@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gestor de Tareas</title>
+</head>
+<body>
+  <h1>Lista de tareas</h1>
+  <ul>
+    {% for t in tareas %}
+      <li>{{ t["titulo"] }}</li>
+    {% endfor %}
+  </ul>
+  <form action="/agregar" method="post">
+    <input type="text" name="titulo" placeholder="Nueva tarea">
+    <button type="submit">Agregar</button>
+  </form>
+</body>
+</html>
