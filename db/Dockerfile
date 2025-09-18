@@ -1,6 +1,14 @@
-FROM python:3.11
-WORKDIR /app
-COPY . .
-RUN pip install flask
+# Dockerfile para base de datos (SQLite + Flask)
+FROM python:3.10-slim
+
+# WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY app.py .
+
 EXPOSE 6000
-CMD ["python", "db.py"]
+
+CMD ["python", "app.py"]

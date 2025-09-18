@@ -3,24 +3,37 @@ version: "3.9"
 services:
   frontend:
     build: ./frontend
+    container_name: bio_frontend
     ports:
-      - "3000:5000"
+      - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - bio_net
 
   backend:
     build: ./backend
+    container_name: bio_backend
     ports:
       - "5000:5000"
     depends_on:
       - db
+    networks:
+      - bio_net
 
   db:
     build: ./db
-    volumes:
-      - db_data:/app
+    container_name: bio_db
     ports:
       - "6000:6000"
+    volumes:
+      - db_data:/app
+    networks:
+      - bio_net
 
 volumes:
   db_data:
+
+networks:
+  bio_net:
+    driver: bridge
